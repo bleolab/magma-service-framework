@@ -1,29 +1,29 @@
 #!/bin/bash
 
-echo "[Magma] Baixando e extraindo o framework..."
+echo "[Magma Service CLI] Downloading and extracting the Magma Service Framework..."
 curl -L -s https://github.com/bleolab/magma-service-framework/tarball/main -o magma-service-framework.tar.gz
 tar -zxf magma-service-framework.tar.gz --strip-components=1
 rm magma-service-framework.tar.gz
 
-# Limpa arquivos não necessários no projeto final
+# Clean up unnecessary files
 rm -f magma-service.sh download.sh README.md
 rm -rf tests
 
-echo "[Magma] Gerando validator.py e service.py a partir do registry..."
+echo "[Magma Service CLI] Generating validator.py and service.py from the registry..."
 python3 - << 'EOF'
 import os
 import sys
 
-# Adiciona o diretório atual ao sys.path para conseguir importar de 'spec'
+# Add the current directory to sys.path to be able to import from 'spec'
 sys.path.insert(0, os.getcwd())
 
 try:
     from spec.registry import registry
 except ImportError as e:
-    print(f"Erro ao tentar importar 'registry' de 'spec.registry': {e}")
+    print(f"Error importing 'registry' from 'spec':.registry': {e}")
     sys.exit(1)
 
-# 1. Geração do validator.py
+# 1. Generating validator.py
 validator_code = """import yaml
 from abstract_validator import AbstractValidator
 from spec.registry import registry
@@ -45,7 +45,7 @@ class Validator(AbstractValidator):
 with open("validator.py", "w", encoding="utf-8") as f:
     f.write(validator_code)
 
-# 2. Geração do service.py
+# 2. Generating service.py
 imports = set()
 handlers = [
     "    def execute(self, request, spec=None):",

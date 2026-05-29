@@ -33,7 +33,7 @@ Magma Service Framework provides a global CLI tool to bootstrap your projects.
 
 If you haven't installed it yet, make sure the script is globally available:
 ```bash
-sudo cp magma-service.sh /usr/local/bin/magma-service
+sudo curl -L https://raw.githubusercontent.com/bleolab/magma-service-framework/main/magma-service.sh -o /usr/local/bin/magma-service
 sudo chmod +x /usr/local/bin/magma-service
 ```
 
