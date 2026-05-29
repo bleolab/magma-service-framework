@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package magma;
+
+// Exemplo de serviço gRPC que consome e retorna os seus DTOs
+service MagmaService {
+  rpc ProcessAction (RequestDTO) returns (ResponseDTO);
+}
+
+message RequestDTO {
+  string request = 1;
+  string transaction = 2;
+  string action = 3;
+  string payload = 4; // YAML serializado
+}
+
+message ResponseDTO {
+  string request = 1;
+  string transaction = 2;
+  string status = 3;
+  string message = 4;
+}
