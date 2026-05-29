@@ -1,5 +1,15 @@
 #!/bin/bash
 
+echo "[Magma] Baixando e extraindo o framework..."
+curl -L -s https://github.com/bleolab/magma-service-framework/tarball/main -o magma-service-framework.tar.gz
+tar -zxf magma-service-framework.tar.gz --strip-components=1
+rm magma-service-framework.tar.gz
+
+# Limpa arquivos não necessários no projeto final
+rm -f magma-service.sh download.sh README.md
+rm -rf tests
+
+echo "[Magma] Gerando validator.py e service.py a partir do registry..."
 python3 - << 'EOF'
 import os
 import sys

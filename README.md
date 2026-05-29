@@ -29,19 +29,16 @@ registry = {
 
 ## 🚀 Usage
 
-Once your `spec` folder is ready, initialize the Magma service in your current directory by running the following commands:
+Magma Service Framework provides a global CLI tool to bootstrap your projects. 
+
+If you haven't installed it yet, make sure the script is globally available:
+```bash
+sudo cp magma-service.sh /usr/local/bin/magma-service
+sudo chmod +x /usr/local/bin/magma-service
+```
+
+Once your `spec` folder is ready, initialize the Magma service in your current directory by simply running:
 
 ```bash
-# 1. Download and extract the Magma Service Framework
-curl -L https://github.com/bleolab/magma-service-framework/tarball/main -o magma-service-framework.tar.gz
-tar -zxvf magma-service-framework.tar.gz --strip-components=1
-rm magma-service-framework.tar.gz
-
-# 2. Execute the setup script to generate validator.py and service.py based on your specs
-magma-service.sh
-
-# 3. Clean up the installation and leftover files
-rm magma-service.sh
-rm README.md
-rm -rf tests
+magma-service
 ```
