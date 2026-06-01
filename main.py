@@ -2,15 +2,15 @@ import grpc
 from concurrent import futures
 
 # Importa os módulos gerados pela compilação do dto.proto
-import dto_pb2
-import dto_pb2_grpc
+import msf.schema.dto_pb2
+import msf.schema.dto_pb2_grpc
 
 # Importa os schemas Pydantic criados no arquivo dto.py
-from dto import RequestDTO, ResponseDTO
-from validator import Validator
+from msf.dto.dto import RequestDTO, ResponseDTO
+from msf.validator import Validator
 from service import Service
 
-class MagmaServicer(dto_pb2_grpc.MagmaServiceServicer):
+class MagmaServicer(msf.schema.dto_pb2_grpc.MagmaServiceServicer):
 
     def __init__(self):
         self.validator = Validator()
@@ -54,7 +54,7 @@ class MagmaServicer(dto_pb2_grpc.MagmaServiceServicer):
             )
 
         # Converte o Pydantic ResponseDTO de volta para a mensagem do Protobuf ResponseDTO e retorna
-        return dto_pb2.ResponseDTO(
+        return msf.schema.dto_pb2.ResponseDTO(
             request=valid_response.request,
             transaction=valid_response.transaction,
             status=valid_response.status,
@@ -63,7 +63,7 @@ class MagmaServicer(dto_pb2_grpc.MagmaServiceServicer):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    dto_pb2_grpc.add_MagmaServiceServicer_to_server(MagmaServicer(), server)
+    msf.schema.dto_pb2_grpc.add_MagmaServiceServicer_to_server(MagmaServicer(), server)
     server.add_insecure_port('[::]:50051')
     print("[Core/Runner] Magma gRPC server is running on port 50051...")
     server.start()

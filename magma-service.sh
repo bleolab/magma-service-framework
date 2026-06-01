@@ -25,11 +25,10 @@ except ImportError as e:
 
 # 1. Generating validator.py
 validator_code = """import yaml
-from abstract_validator import AbstractValidator
 from spec.registry import registry
 from pydantic import ValidationError
 
-class Validator(AbstractValidator):
+class Validator:
     def validate(self, request):
         action = request.action
         if action not in registry:
