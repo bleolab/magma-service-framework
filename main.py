@@ -8,7 +8,7 @@ import msf.schema.dto_pb2_grpc
 # Importa os schemas Pydantic criados no arquivo dto.py
 from msf.dto.dto import RequestDTO, ResponseDTO
 from msf.validator import Validator
-from service import Service
+from service.service import Service
 
 class MagmaServicer(msf.schema.dto_pb2_grpc.MagmaServiceServicer):
 
