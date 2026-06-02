@@ -41,7 +41,7 @@ class Validator:
         except ValidationError as e:
             raise Exception(f"Error validating payload for action '{action}': {e}")
 """
-with open("validator.py", "w", encoding="utf-8") as f:
+with open("msf/validator.py", "w", encoding="utf-8") as f:
     f.write(validator_code)
 
 # 2. Generating service.py
@@ -61,7 +61,7 @@ for action, spec_class in registry.items():
     handlers.append(f"    def {handler_name}(self, spec: {spec_name}):\n        pass\n")
 
 service_code = "\n".join(imports) + "\n\nclass Service:\n" + "\n".join(handlers)
-with open("service.py", "w", encoding="utf-8") as f:
+with open("service/service.py", "w", encoding="utf-8") as f:
     f.write(service_code)
 
 print("validator.py and service.py were generated successfully!")

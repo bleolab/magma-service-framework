@@ -32,10 +32,6 @@ class MagmaServicer(msf.schema.dto_pb2_grpc.MagmaServiceServicer):
             # Executa a ação usando o service, repassando o request e a spec validada
             self.service.execute(valid_request, spec=spec)
             
-            
-            # TODO: Inserir a lógica de negócio aqui. 
-            pass
-            
             # Caso tudo corra bem, cria a resposta de sucesso validada no schema
             valid_response = ResponseDTO(
                 request=valid_request.request,
