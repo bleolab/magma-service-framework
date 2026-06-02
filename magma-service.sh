@@ -7,8 +7,8 @@ rm magma-service-framework.tar.gz
 
 # Clean up unnecessary files
 rm -f magma-service.sh LICENSE .git .gitignore Dockerfile README.md
+chmod -R u+w test 2>/dev/null || true
 rm -rf test
-rm -rf tests
 
 touch README.md .gitignore
 
