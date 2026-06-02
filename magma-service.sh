@@ -6,8 +6,11 @@ tar -zxf magma-service-framework.tar.gz --strip-components=1
 rm magma-service-framework.tar.gz
 
 # Clean up unnecessary files
-rm -f magma-service.sh LICENSE .gitignore Dockerfile
+rm -f magma-service.sh LICENSE .git .gitignore Dockerfile README.md
+rm -rf test
 rm -rf tests
+
+touch README.md .gitignore
 
 echo "[Magma Service CLI] Generating validator.py and service.py from the registry..."
 python3 - << 'EOF'
